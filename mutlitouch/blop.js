@@ -5,7 +5,6 @@ function Blop(c, x, y, beingId, acc, vel) {
   this.diameter = int(random(16, 25)); //les nombres décimaux finissent par se décaler au fil du temps, donc mieux de s'en tenir aux entiers ou 0.5 apparement
   this.speed = int(random(1));
   this.colour = c;
-  // this.beingId = beingId;
   this.goesUp = false;
   this.breathUp = false;
   this.colorStroke = 0
@@ -14,7 +13,7 @@ function Blop(c, x, y, beingId, acc, vel) {
   this.vel = vel;
   this.maxSpeed = 0.4;
   this.desiredSeparation = 500;
-  this.maxSpeed = 8;
+  this.maxSpeed = 5;
   this.maxForce = 0.4;
   this.r = 6;
   this.old_distance = 0;
@@ -61,11 +60,11 @@ function Blop(c, x, y, beingId, acc, vel) {
     // 4 - On rotate la forme pour qu'elle s'oriente vers la target
     rotate(theta);
 
-    // 1 - On construit notre forme au point 0
+    // 1 - On construit notre forme au point 0 - Triangle leader
     beginShape();
-    vertex(0, -this.r * 2);
-    vertex(-this.r, this.r * 2);
-    vertex(this.r, this.r * 2);
+    // vertex(0, -this.r * 2);
+    // vertex(-this.r, this.r * 2);
+    // vertex(this.r, this.r * 2);
     endShape(CLOSE);
 
     pop();
@@ -99,13 +98,13 @@ function Blop(c, x, y, beingId, acc, vel) {
       point.x = blops[0].pos.x + vectorToHead.x;
       point.y = blops[0].pos.y + vectorToHead.y;
 */
-      // Triangles tests
+      // Triangles - not leaders
       noStroke();
       fill(255,255,255,20);
       beginShape();
-      vertex(0, -this.r * 2);
-      vertex(-this.r, this.r * 2);
-      vertex(this.r, this.r * 2);
+      // vertex(0, -this.r * 2);
+      // vertex(-this.r, this.r * 2);
+      // vertex(this.r, this.r * 2);
       endShape(CLOSE);
       pop();
     }
