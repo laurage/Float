@@ -60,6 +60,7 @@ function draw() {
     vel = createVector(0, 0);
     being = new Being(beingId, colour1, acc, vel);
     beings.push(being);
+    print("top:"+beings[beingId]);
     beingId++;
     newBeing = false;
   }
@@ -107,7 +108,7 @@ function lonlyBlopsCreate(){
     lonlyBlops[i].move();
   }
 
-  // LonlyBlops generator for the first seconds of sketc
+  // LonlyBlops generator for the first seconds of sketch
 
   for(var i = 0; i < lonlyBlopsInitial.length; i++){
     lonlyBlopsInitial[i].display();
@@ -119,12 +120,16 @@ function lonlyBlopsCreate(){
 
 function keyPressed(){
   //// CREATES A NEW BEING EVERY TIME A KEY IS PRESSED
-  newBeing = true;
-  for(var i = 0; i < beings.length; i++){
-    /// ready is an instance variable.
-    /// when ready = false => being is in stage 1: static + random lines + blops
-    /// when ready = true  => being is in stage 2: moves + fixed lines + no blops
-    beings[i].ready = true;
+  //// Checks that one blop at least has been created
+  if (typeof beings[beingId-1].blops[0] !== 'undefined'){
+    print("good to go");
+    newBeing = true;
+    for(var i = 0; i < beings.length; i++){
+      /// ready is an instance variable.
+      /// when ready = false => being is in stage 1: static + random lines + blops
+      /// when ready = true  => being is in stage 2: moves + fixed lines + no blops
+      beings[i].ready = true;
+    }
   }
 }
 
