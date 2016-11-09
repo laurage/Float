@@ -2,6 +2,8 @@
 //// WHEN THEY TAKE THEIR FINGERS OFF, THIS BEING LIVES ITS LIFE.
 //// IF THEY PUT THEIR FINGERS BACK, A NEW BEING (= NEW ELEMENT IN THE BEING ARRAY) IS CREATED.
 
+var fontRegular, fontItalic, fontBold;
+
 var cohesionSlider;
 var separationSlider;
 var alignmentSlider;
@@ -26,6 +28,14 @@ var rand;
 
 var point;
 
+var gameOn = false;
+
+
+function preload() {
+   fontRegular = loadFont("assets/Geogtq-Md.otf");
+   fontItalic = loadFont("assets/OpenSans-Italic.ttf");
+   fontBold = loadFont("assets/OpenSans-Bold.ttf");
+}
 
 function setup() {
   createCanvas(1500, 900);
@@ -53,7 +63,18 @@ function draw() {
   background(17, 23, 48);
 
   rocks();
+  lonlyBlopsCreate();
 
+
+  if(gameOn == true){
+    game();
+  }else{
+    intro();
+  }
+
+}
+
+function game(){
   ///// CREATE A NEW BEING EVERY TIME A KEY IS PRESSED
   if(newBeing == true){
     acc = createVector(0, 0);
@@ -84,7 +105,7 @@ function draw() {
     beings[i].beingStage1();
   }
 
-  lonlyBlopsCreate();
+
 
 }
 
@@ -117,8 +138,9 @@ function lonlyBlopsCreate(){
   }
 }
 
-
 function keyPressed(){
+  gameOn = true;
+
   //// CREATES A NEW BEING EVERY TIME A KEY IS PRESSED
   //// Checks that one blop at least has been created
   if (typeof beings[beingId-1].blops[0] !== 'undefined'){
@@ -178,6 +200,21 @@ function rocks(){
   vertex(width, height-50);
   vertex(width, height);
   endShape(CLOSE);
+}
+
+function intro(){
+  fill(255, 255, 255);
+  textSize(25);
+  textFont(fontRegular);
+  textAlign(CENTER);
+  text("Click anywhere on the screen to start creating a being", width/2, height/2-200);
+  text("Press any key to release it", width/2, height/2-150);
+  text("Click again...", width/2, height/2-100);
+  text("Press ENTER to start", width/2, height/2-0);
+  noFill();
+  stroke(255,255,255);
+  strokeWeight(3);
+  rect(width/2-150, height/2-40, 300,70);
 }
 
 
