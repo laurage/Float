@@ -1,6 +1,6 @@
 #FLOAT
 
-![float image][https://github.com/laurage/Float/blob/master/Float.jpg]
+![float image](https://github.com/laurage/Float/blob/master/Float.jpg)
 
 ##Introduction
 
